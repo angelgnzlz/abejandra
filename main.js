@@ -60,17 +60,23 @@ function guardarMensaje(mensaje) {
             }
 
             // Guarda los cambios en el archivo JSON
-            fetch('chat.json', {
+            fetch('/guardar_mensaje', {
                 method: 'POST',
                 headers: {
-                'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
+            })
+            .then(response => {
+                console.log('Mensaje guardado exitosamente');
+            })
+            .catch(error => {
+                console.error('Error al guardar el mensaje:', error);
             });
         })
         .catch(error => {
-        // Maneja errores
-        console.error(error);
+            // Maneja errores
+            console.error(error);
         });
 }
 
