@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Chat con reproductor de música</title>
+    </head>
+    <body>
+        <h1>Chat con reproductor de música</h1>
+
+        <h2>Reproductor de música</h2>
+        <audio controls>
+            <source src="/cancion/instrumental.wav" type="audio/wav">
+            Tu navegador no soporta la etiqueta audio.
+        </audio>
+
+        <h2>Chat</h2>
+        <ul id="lista-mensajes"></ul>
+            <form onsubmit="enviarMensaje(); return false;">
+                <input type="text" id="mensaje" placeholder="Escribe un mensaje">
+            <button type="submit">Enviar</button>
+        </form>
+
+        <script src="main.js"></script>
+    </body>
+</html>
