@@ -2,7 +2,8 @@
     "mensajes": [
         {
             "usuario": "Admin",
-            "mensaje": "Bienvenida"
+            "mensaje": "Bienvenida",
+            "fecha"  : "Siempre"
         }
     ]
 }
