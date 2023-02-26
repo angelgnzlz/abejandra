@@ -37,6 +37,7 @@ function cargarMensajes() {
     fetch('chat.json')
         .then(response => response.json())
         .then(data => {
+        console.log(data)
         // Lee los mensajes del archivo JSON
         console.log(data.mensajes);
         })
