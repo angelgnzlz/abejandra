@@ -1,28 +1,63 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Chat con reproductor de música</title>
-    </head>
-    <body>
-        <h1>Chat con reproductor de música</h1>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700' rel='stylesheet' type='text/css'>
+	<script src="https://kit.fontawesome.com/6c17404fcb.js" crossorigin="anonymous"></script>
+    <script src="https://cdns-files.deezer.com/js/min/dz.js" async="false"></script>
+    <title>KaraokeConMiAbejandra</title>
+</head>
+<body>
+	<section class="container">
+		<div id="player">
+			<div class="caratula">
+				<img src="https://4.bp.blogspot.com/_NsAexvbcSn0/ST20kHuQRSI/AAAAAAAAA8s/Y3G2PNLdKdU/s400/Teleradio_cover.jpg">
+				<div class="search-container" onclick="searchTrack(this.value)">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input id="search-input" onchange="searchTrack(this.value)" class="search-input" type="search" hidden placeholder="Busca una canción">
+                </div>
+                <div class="search-results"></div>
+                <div class="more">
+					<i class="fa-solid fa-info"></i>
+				</div>
+                <div class="bio">
+                    <h2>Para mi abejandra🐝</h2>
+                    <p>Mi niña, quería hacer algo especial para ti y demostrarte lo mucho que te amo. Así que tomé una canción que nos gusta y escribí una letra personalizada, solo para ti. Y para que podamos cantar juntos, creé una página web de karaoke que podemos usar cuando queramos.<br>Quiero que sepas que eres la persona más importante en mi vida y que te amo más de lo que las palabras pueden expresar.<br>Cada momento que paso contigo es una bendición y estoy agradecido por cada día que tenemos juntos. Espero que disfrutes cantando nuestra canción personalizada tanto como yo disfruté creándola para ti.<br>Te amo con todo mi corazón, mi amor. ¡Feliz karaoke juntos!"</p>
+                </div>
+				
+			</div>
+            <audio preload="auto" src="/cancion/instrumental.mp3"></audio>
 
-        <h2>Reproductor de música</h2>
-        <audio id="audio-player" controls>
-            <source src="./cancion/instrumental.mp3" type="audio/mpeg">
-            Tu navegador no soporta la etiqueta audio.
-        </audio>
+			<div class="time">
+				<div class="progress"></div>
+			</div>
 
-        <div id="lyrics"></div>
+			<div class="info">
+					<div class="love">
+						<div class="icon-heart"></div>
+						<div class="icon-star-empty"></div>
+					</div>
+				<div class="elapsed">2:40</div>
+				<h2>Teleradio Donoso</h2>
+				<h3>Amar en el campo</h3>
+			</div>
+            
 
-        <h2>Chat</h2>
-        <ul id="lista-mensajes"></ul>
-            <form onsubmit="enviarMensaje(); return false;">
-                <input type="text" placeholder="Usuario">
-                <input type="text" id="mensaje" placeholder="Escribe un mensaje">
-            <button type="submit">Enviar</button>
-        </form>
-
-        <script src="main.js"></script>
-    </body>
+			<div class="controls">
+				<div class="controls">
+                    <button id="play-btn"><i class="fa-solid fa-play"></i></i></button>
+                    <button id="pause-btn"><i class="fa-solid fa-pause"></i></i></button>
+                    <button id="stop-btn"><i class="fa-solid fa-stop"></i></i></button>
+                </div>
+			</div>
+		</div>
+	</section>
+    <script src="main.js"></script>
+</body>
 </html>
+

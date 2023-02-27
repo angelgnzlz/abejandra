@@ -1,35 +1,124 @@
-// Logica reproductor
+window.onload = function() {
+    // Inicializar la Deezer SDK
+    DZ.init({
+        appId  : '585144',
+        player : {
+            onload : function(){
+                const clientId = '585144'; // Reemplaza esto con tu ID de cliente de Deezer
+                const clientSecret = '71663a1a0216165c1d3e0ccbcc33c893'; // Reemplaza esto con tu secreto de cliente de Deezer
+            }
+        }
+    });
+};
+
+function searchTrack(search) {
+    const clientId = '585144'; // Reemplaza esto con tu ID de cliente de Deezer
+    
+    // Realiza una solicitud GET a la API de Deezer para buscar canciones
+    fetch(`https://api.deezer.com/search?q=${search}&limit=5`)
+    .then(response => response.json())
+    .then(data => {
+        // Crea un array para almacenar los resultados
+        const results = [];
+
+        // Recorre los resultados de búsqueda y agrega la información necesaria al array
+        data.data.forEach(song => {
+        results.push({
+            id: song.id,
+            cover: song.album.cover_medium,
+            title: song.title,
+            artist: song.artist.name,
+            duration: song.duration
+        });
+        });
+        
+        coverContainer = document.createElement('img')
+        coverContainer.src = results['cover']
+
+        titleContainer = document.createElement('h2')
+        titleContainer.textContent = results['title']
+
+        artistContainer = document.createElement('span')
+        artistContainer.textContent = results['artist']
+
+        durationContainer = document.createElement('span')
+        durationContainer.textContent = results['duration']
+
+        // Hacer algo con el array de resultados aquí
+        console.log(results);
+        resultsContainer = document.querySelector('search-results')
+        resultsContainer.appendChild(coverContainer)
+        resultsContainer.appendChild(titleContainer)
+        resultsContainer.appendChild(artistContainer)
+        resultsContainer.appendChild(durationContainer)
+    })
+    .catch(error => console.error(error));
+}
+
+
+document.querySelector('.search-container').addEventListener('mouseover', ()=>{
+    document.querySelector('#search-input').removeAttribute('hidden');
+});
+
+document.querySelector('.search-container').addEventListener('mouseout', ()=>{
+    document.querySelector('#search-input').setAttribute('hidden', true);
+});
+
+document.querySelector('.more').addEventListener('mouseover', ()=>{
+    let bio = document.querySelector('.bio')
+    bio.classList.add('expandirBio')
+});
+
+document.querySelector('.more').addEventListener('mouseout', ()=>{
+    let bio = document.querySelector('.bio')
+    
+    if(bio.addEventListener('mouseout', ()=>{
+        bio.classList.remove('expandirBio')
+    }));
+});
+
+
+// Obtener elementos del DOM
+const playBtn = document.getElementById('play-btn');
+const pauseBtn = document.getElementById('pause-btn');
+const stopBtn = document.getElementById('stop-btn');
+const audio = document.querySelector('audio')
+
+audio.addEventListener("timeupdate", function() {
+    let progressBar = document.querySelector('.progress')
+    let currentTime = audio.currentTime;
+    let duration = audio.duration;
+    let progress = (currentTime / duration) * 100;
+
+    progressBar.style.width = progress + "%";
+});
+
+console.log(audio)
+
+// Función para reproducir el audio
+function playAudio() {
+    audio.play();
+}
+
+// Función para pausar el audio
+function pauseAudio() {
+    audio.pause();
+}
+
+// Función para detener el audio y reiniciar su tiempo
+function stopAudio() {
+    audio.pause();
+    audio.currentTime = 0;
+}
+
+// Agregar event listeners a los botones
+playBtn.addEventListener('click', playAudio);
+pauseBtn.addEventListener('click', pauseAudio);
+stopBtn.addEventListener('click', stopAudio);
+
 
 const audioPlayer = document.getElementById('audio-player');
-const lyricsDiv = document.getElementById('lyrics');
 const lyricsFile = './cancion/tiroteo.lrc'; // Cambiar por el nombre de tu archivo de letra de canción
-
-audioPlayer.addEventListener('timeupdate', function() {
-    fetch(lyricsFile)
-        .then(response => response.text())
-        .then(text => {
-            const lines = text.split('\n');
-            const timeRegExp = /\[(\d{2}):(\d{2})\.(\d{2})\]/;
-            const currentTime = Math.floor(audioPlayer.currentTime);
-            
-            for (let i = 0; i < lines.length; i++) {
-                const line = lines[i];
-                const timeMatch = line.match(timeRegExp);
-                
-                if (timeMatch) {
-                    const minutes = parseInt(timeMatch[1]);
-                    const seconds = parseInt(timeMatch[2]);
-                    const time = minutes * 60 + seconds;
-                    
-                    if (time === currentTime) {
-                        const lyricsLine = line.replace(timeRegExp, '');
-                        lyricsDiv.innerHTML = lyricsLine;
-                        lyricsDiv.scrollTop = lyricsDiv.scrollHeight;
-                    }
-                }
-            }
-        });
-});
 
 // Logica Chat
 
