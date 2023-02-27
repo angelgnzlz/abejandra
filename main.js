@@ -116,8 +116,6 @@ playBtn.addEventListener('click', playAudio);
 pauseBtn.addEventListener('click', pauseAudio);
 stopBtn.addEventListener('click', stopAudio);
 
-
-const audioPlayer = document.getElementById('audio-player');
 const lyricsFile = './cancion/tiroteo.lrc'; // Cambiar por el nombre de tu archivo de letra de canción
 
 // Logica Chat
