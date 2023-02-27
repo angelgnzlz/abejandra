@@ -14,8 +14,12 @@ window.onload = function() {
 function searchTrack(search) {
     const clientId = '585144'; // Reemplaza esto con tu ID de cliente de Deezer
     
+    const corsHeaders = new Headers({
+        'Access-Control-Allow-Origin': 'https://angelgnzlz.github.io'
+    });
     // Realiza una solicitud GET a la API de Deezer para buscar canciones
-    fetch(`https://api.deezer.com/search?q=${search}&limit=5&app_id=${clientId}`)
+    fetch(`https://api.deezer.com/search?q=${search}&limit=5`, {headers: corsHeaders})
+    
     .then(response => response.json())
     .then(data => {
         // Crea un array para almacenar los resultados
