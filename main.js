@@ -15,7 +15,7 @@ function searchTrack(search) {
     const clientId = '585144'; // Reemplaza esto con tu ID de cliente de Deezer
     
     // Realiza una solicitud GET a la API de Deezer para buscar canciones
-    fetch(`https://api.deezer.com/search?q=${search}&limit=5`)
+    fetch(`https://api.deezer.com/search?q=${search}&limit=5&app_id=${clientId}`)
     .then(response => response.json())
     .then(data => {
         // Crea un array para almacenar los resultados
