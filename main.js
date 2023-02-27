@@ -5,11 +5,15 @@ window.onload = function() {
         player : {
             onload : function(){
                 const clientId = '585144'; // Reemplaza esto con tu ID de cliente de Deezer
-                const clientSecret = '71663a1a0216165c1d3e0ccbcc33c893'; // Reemplaza esto con tu secreto de cliente de Deezer
+                const redirect_uri = 'https://angelgnzlz.github.io/abejandra/'
+                const perms = 'basic_access, email, offline_access, manage_library'
+                
+                window.location.href = `https://connect.deezer.com/oauth/auth.php?app_id=${clientId}&redirect_uri=${redirect_uri}&perms=${perms}`;// Reemplaza esto con tu secreto de cliente de Deezer
             }
         }
     });
 };
+
 
 function searchTrack(search) {
     const clientId = '585144'; // Reemplaza esto con tu ID de cliente de Deezer
