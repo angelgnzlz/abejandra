@@ -2,7 +2,7 @@
 
 const audioPlayer = document.getElementById('audio-player');
 const lyricsDiv = document.getElementById('lyrics');
-const lyricsFile = 'tiroteo.lrc'; // Cambiar por el nombre de tu archivo de letra de canción
+const lyricsFile = './cancion/tiroteo.lrc'; // Cambiar por el nombre de tu archivo de letra de canción
 
 audioPlayer.addEventListener('timeupdate', function() {
     fetch(lyricsFile)
@@ -60,23 +60,17 @@ function guardarMensaje(mensaje) {
             }
 
             // Guarda los cambios en el archivo JSON
-            fetch('/guardar_mensaje', {
+            fetch('chat.json', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
-            })
-            .then(response => {
-                console.log('Mensaje guardado exitosamente');
-            })
-            .catch(error => {
-                console.error('Error al guardar el mensaje:', error);
             });
         })
         .catch(error => {
-            // Maneja errores
-            console.error(error);
+        // Maneja errores
+        console.error(error);
         });
 }
 
